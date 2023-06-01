@@ -57,8 +57,8 @@
                                         </div>
                                         <div class="profile">
                                               <div>
-                                                  <p><h5><?=$name?></h5></p>
-                                                  <small class="text-muted">Admin</small>
+                                                  <p><h5><?=$session_details[0];?></h5></p>
+                                                  <small class="text-muted"><?=$session_details[1];?></small>
                                               </div>
                                               <div>
                                                     <img src="pictures/124-1246857_employee-avatar-transparent-background-png-icone-chef-d.png">

@@ -6,7 +6,7 @@
 
       include("functions.php");
 
-      $name = set_session_details();
+      $session_details = set_session_details();
 
       check_login();
 

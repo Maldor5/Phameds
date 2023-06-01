@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: May 26, 2023 at 01:24 PM
--- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- Host: db:3306
+-- Generation Time: Jun 01, 2023 at 04:55 PM
+-- Server version: 8.0.33
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,16 +27,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `inventory`
 --
 
-DROP TABLE IF EXISTS `inventory`;
-CREATE TABLE IF NOT EXISTS `inventory` (
+CREATE TABLE `inventory` (
   `id` varchar(30) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `unit_price` int(10) NOT NULL,
-  `quantity` int(10) NOT NULL,
+  `unit_price` int NOT NULL,
+  `quantity` int NOT NULL,
   `expiry_date` date NOT NULL,
   `category` varchar(30) NOT NULL,
-  `description` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
+  `description` varchar(15) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -155,14 +153,12 @@ INSERT INTO `inventory` (`id`, `name`, `unit_price`, `quantity`, `expiry_date`, 
 -- Table structure for table `sales`
 --
 
-DROP TABLE IF EXISTS `sales`;
-CREATE TABLE IF NOT EXISTS `sales` (
+CREATE TABLE `sales` (
   `id` varchar(20) NOT NULL,
   `date` date NOT NULL,
   `name` varchar(25) NOT NULL,
   `unit_price` varchar(30) NOT NULL,
-  `quantity` int(30) NOT NULL,
-  PRIMARY KEY (`id`)
+  `quantity` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -179,29 +175,30 @@ INSERT INTO `sales` (`id`, `date`, `name`, `unit_price`, `quantity`) VALUES
 -- Table structure for table `staff`
 --
 
-DROP TABLE IF EXISTS `staff`;
-CREATE TABLE IF NOT EXISTS `staff` (
+CREATE TABLE `staff` (
   `id` varchar(6) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `gender` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `contact` varchar(15) NOT NULL,
-  `role` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
+  `role` varchar(15) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`id`, `first_name`, `last_name`, `gender`, `email`, `contact`, `role`) VALUES
-('A001', 'MATOVU', 'REAGAN', 'M', 'johnreagan@gmail.com', '070724333', 'Admin'),
-('S001', 'KIBERU', 'JORDAN', 'M', 'kibesj99@gmail.com', '0785693128', 'Staff'),
-('S002', 'NUWAGABA', 'TIMON', 'M', 'nuwagzit@yahoo.com', '0789452314', 'Staff'),
-('S003', 'OLUPOT', 'JOEL', 'M', 'olupotj76@icloud.com', '0785231111', 'Staff'),
-('S005', 'TUSABE', 'PRECIOUS', 'F', 'aunt.tus@gmail.com', '0700002869', 'Staff'),
-('S006', 'MUWONGE', 'REMY', 'M', 'remylyn56@gmail.com', '0707856982', 'Staff');
+INSERT INTO `staff` (`id`, `first_name`, `last_name`, `user_name`, `password`, `gender`, `email`, `contact`, `role`) VALUES
+('A001', 'MATOVU', 'REAGAN', NULL, NULL, 'M', 'johnreagan@gmail.com', '070724333', 'Admin'),
+('S001', 'KIBERU', 'JORDAN', NULL, NULL, 'M', 'kibesj99@gmail.com', '0785693128', 'Staff'),
+('S002', 'NUWAGABA', 'TIMON', NULL, NULL, 'M', 'nuwagzit@yahoo.com', '0789452314', 'Staff'),
+('S003', 'OLUPOT', 'JOEL', NULL, NULL, 'M', 'olupotj76@icloud.com', '0785231111', 'Staff'),
+('S005', 'TUSABE', 'PRECIOUS', NULL, NULL, 'F', 'aunt.tus@gmail.com', '0700002869', 'Staff'),
+('S006', 'MUWONGE', 'REMY', NULL, NULL, 'M', 'remylyn56@gmail.com', '0707856982', 'Staff'),
+('S007', 'MALCOLM', 'KANANURA', 'malcolmK', 'random_8080!#', 'Male', 'mwine360@gmail.com', '0770784043', 'Staff');
 
 -- --------------------------------------------------------
 
@@ -209,18 +206,13 @@ INSERT INTO `staff` (`id`, `first_name`, `last_name`, `gender`, `email`, `contac
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL,
+CREATE TABLE `users` (
+  `id` bigint NOT NULL,
+  `user_id` bigint NOT NULL,
   `user_name` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `user_name` (`user_name`),
-  KEY `date` (`date`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -228,6 +220,47 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `user_id`, `user_name`, `password`, `date`) VALUES
 (1, 2055550, 'reagan', 'reagan', '2023-05-23 19:47:09');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `user_name` (`user_name`),
+  ADD KEY `date` (`date`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

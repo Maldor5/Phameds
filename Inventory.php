@@ -7,7 +7,7 @@
           //include("connection.php");
           include("functions.php");
 
-          $name = set_session_details();
+          $session_details = set_session_details();
           check_login();
 
           //$user_data = check_login($con); //checks if user is loged in put on all pages

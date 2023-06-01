@@ -2,7 +2,7 @@
       session_start();
 
       // Check if the staff member is already logged in
-      if (isset($_SESSION['user_id'])) {
+      if (isset($_SESSION['id'])) {
           header('Location: ./Inventory.php');
           exit;
       }
@@ -26,11 +26,11 @@
               }
 
               // Prepare the SQL statement to check the username and password
-              $query = "SELECT user_id FROM users WHERE user_name = ? AND password = ?";
+              $query = "SELECT id, role FROM staff WHERE user_name = ? AND password = ?";
               $stmt = mysqli_prepare($conn, $query);
               mysqli_stmt_bind_param($stmt, 'ss', $username, $password);
               mysqli_stmt_execute($stmt);
-              mysqli_stmt_bind_result($stmt, $staffId);
+              mysqli_stmt_bind_result($stmt, $staffId, $role);
               mysqli_stmt_fetch($stmt);
               mysqli_stmt_close($stmt);
 
@@ -40,7 +40,8 @@
               // Check if the login credentials are correct
               if ($staffId) {
                   // Set the staff ID in the session
-                  $_SESSION['user_id'] = $staffId;
+                  $_SESSION['id'] = $staffId;
+                  $_SESSION['role'] = $role;
 
                   // Redirect to the protected page
                   // header('Location: Inventory.php');
