@@ -1,21 +1,25 @@
 
 
 <?php
-function check_login($conn)
-{
-    if (isset($_SESSION['user_id'])) {
-        $id = $_SESSION['user_id'];
-        $query = "SELECT * FROM users WHERE user_id = '$id' LIMIT 1";
-        $result = mysqli_query($conn, $query);
+    function set_session_details() {
 
-        if ($result && mysqli_num_rows($result) > 0) {
-            $user_data = mysqli_fetch_assoc($result);
-            return $user_data;
+        
+        if (isset($_SESSION['username'])) {
+        // Retrieve the user's name from the session
+        $userName = $_SESSION['username'];
+        }
+
+        return $userName;
+    }
+
+    function check_login(){
+        // Check if the staff member is not logged in
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: index.php');
+            exit;
         }
     }
 
-    // Redirect to login if user is not logged in
-    header("Location: index.php");
-    die;
-}
+        
+
 ?>
