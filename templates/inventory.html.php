@@ -55,40 +55,18 @@
                   </thead>
                   <tbody>
                           <!-- posts data to the db -->
-                          <form action="" method="post">
+                          <form action="Inventory.php" method="post">
                           <tr>
-                            <td><input type="text" name="id" value=""></td>
-                            <td><input type="text" id="input" name="name" value="" required></td>
-                            <td><input type="text" name="unit_price" value=""></td>
-                            <td><input type="text" name="quantity" value=""></td>
-                            <td><input type="text" name="price" value=""></td>
-                            <td><input type="date" name="expiry_date" value=""></td>
-                            <td><input id="input" type="text" name="category" value=""></td>
-                            <td><input id="input" type="text" name="description" value=""></td>
-                            <td><button type="submit" name="submit"><img src="/assets/icons/plus.png"></button></td>
-                          </tr>
-                            <?php
-                              //posts data into the tables
-                              require_once('config/connection.php');
-                              if(isset($_POST["submit"]))
-                              {
-                                $id = $_POST["id"];
-                                $name = $_POST["name"];
-                                $expiry_date = $_POST["expiry_date"];
-                                $unit_price = $_POST["unit_price"];
-                                $quantity = $_POST["quantity"];
-                                $category = $_POST["category"];
-                                $description = $_POST["description"];
-
-                                $queryy = "INSERT INTO inventory VALUES('$id','$name','$expiry_date','$unit_price','$quantity','$category','$description')";
-                                
-                                
-                                mysqli_query($conn, $queryy);
-                                
-                              }
-
-                            ?>
-                            
+                                <td><input type="text" name="id" value=""></td>
+                                <td><input type="text" id="input" name="name" value="" required></td>
+                                <td><input type="text" name="unit_price" value=""></td>
+                                <td><input type="text" name="quantity" value=""></td>
+                                <td><input type="text" name="price" value=""></td>
+                                <td><input type="date" name="expiry_date" value=""></td>
+                                <td><input id="input" type="text" name="category" value=""></td>
+                                <td><input id="input" type="text" name="description" value=""></td>
+                                <td><button type="submit" name="submit"><img src="/assets/icons/plus.png"></button></td>
+                          </tr>   
                           <tr>
                                 <?php 
                                 //displays data from the db table
