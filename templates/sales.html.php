@@ -35,43 +35,43 @@
       <h2>Sales</h2>
       <table>
                   <thead>
-                    <tr>
-                      <th>id</th>
-                      <th>date</th>
-                      <th>name</th>
-                      <th>unit price</th>
-                      <th>quantity</th>
-                    </tr>
+                        <tr>
+                              <th>id</th>
+                              <th>date</th>
+                              <th>name</th>
+                              <th>unit price</th>
+                              <th>quantity</th>
+                        </tr>
                   </thead>
                   <tbody>
-                    <form action="Sales.php" method="post">
-                    <tr>
-                      <td><input type="text" name="id" value=""></td>
-                      <td><input type="date" name="date" value="<?php echo date('Y-m-d'); ?>"></td>
-                      <td><input type="text" id="input" name="name" value="" required></td>
-                      <td><input type="text" name="unit_price" value=""></td>
-                      <td><input type="text" name="quantity" value=""></td>
-                      <td><button type="submit" name="submit"><img src="/assets/icons/shopping cart.png"></button></td>
-                    </tr>
-                    <tr>
-                          <?php 
-                          mysqli_data_seek($result, 0); // Reset the result pointer to the beginning
-                          while($row = mysqli_fetch_assoc($result))
-                          {
-                          ?>
-                          <td><?php echo $row['id'];?></td>
-                          <td><?php echo $row['date'];?></td>
-                          <td><?php echo $row['name'];?></td>
-                          <td><?php echo $row['unit_price'];?></td>
-                          <td><?php echo $row['quantity'];?></td>
-                          <td><?php echo $row['unit_price'] * $row['quantity'];?></td>
-        
+                        <form action="Sales.php" method="post">
+                        <tr>
+                              <td><input type="text" name="id" value=""></td>
+                              <td><input type="date" name="date" value="<?php echo date('Y-m-d'); ?>"></td>
+                              <td><input type="text" id="input" name="name" value="" required></td>
+                              <td><input type="text" name="unit_price" value=""></td>
+                              <td><input type="text" name="quantity" value=""></td>
+                              <td><button type="submit" name="submit"><img src="/assets/icons/shopping cart.png"></button></td>
+                        </tr>
+                        <tr>
+                              <?php 
+                              mysqli_data_seek($result, 0); // Reset the result pointer to the beginning
+                              while($row = mysqli_fetch_assoc($result))
+                              {
+                              ?>
+                              <td><?php echo $row['id'];?></td>
+                              <td><?php echo $row['date'];?></td>
+                              <td><?php echo $row['name'];?></td>
+                              <td><?php echo $row['unit_price'];?></td>
+                              <td><?php echo $row['quantity'];?></td>
+                              <td><?php echo $row['unit_price'] * $row['quantity'];?></td>
+            
 
-                    </tr>
-                          <?php
-                            }
+                        </tr>
+                              <?php
+                              }
 
-                            ?>
+                              ?>
                 
               </tbody>
       </table>

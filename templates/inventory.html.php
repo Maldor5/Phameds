@@ -4,8 +4,8 @@
             <div class="middle">
                   <img src="/assets/icons/product.png">
                   <div class="left">
-                    <h2>Stock Price</h2>
-                    <h1>Shs.<?php echo number_format($totalSum); ?></h1>
+                        <h2>Stock Price</h2>
+                        <h1>Shs.<?php echo number_format($totalSum); ?></h1>
                   </div>
             </div>
             <small class="text-muted">Last 24 Hours</small>
