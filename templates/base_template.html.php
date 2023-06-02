@@ -25,7 +25,7 @@
                                 <img src="/assets/icons/inventory.png">
                                 <h3>Inventory</h3>
                           </a>
-                          <a href="./staff.php" class="staff">
+                          <a href="./staff.php" class="staff"  onclick="selected();">
                                 <img src="/assets/icons/staff icon.png">
                                 <h3>Staff</h3>
                           </a>

@@ -31,7 +31,7 @@
 
           }
 
-          if(isset($_POST["submit"])) {
+          if (isset($_POST["submit"])) {
             $id = $_POST["id"];
             $name = $_POST["name"];
             $expiry_date = $_POST["expiry_date"];
@@ -39,13 +39,16 @@
             $quantity = $_POST["quantity"];
             $category = $_POST["category"];
             $description = $_POST["description"];
-
-            $queryy = "INSERT INTO inventory VALUES('$id','$name','$expiry_date','$unit_price','$quantity','$category','$description')";
+        
+            $query = "INSERT INTO inventory (id, name, expiry_date, unit_price, quantity, category, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
             
+            $stmt = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($stmt, 'ssssiss', $id, $name, $expiry_date, $unit_price, $quantity, $category, $description);
+            mysqli_stmt_execute($stmt);
             
-            mysqli_query($conn, $queryy);
-                                
-          }
+            mysqli_stmt_close($stmt);
+        }
+        
 
           ob_start();
 
